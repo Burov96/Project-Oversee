@@ -1,4 +1,5 @@
 "use client";
+import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
@@ -25,9 +26,9 @@ const Navbar = () => {
   ];
 
   return (
-    <div className="flex justify-between items-center w-full h-20 px-4 text-white bg-black fixed nav ">
+    <div className="zbg-white flex justify-between items-center w-full h-20 px-4 text-white bg-black fixed nav ">
         <div>
-          <h1 className="text-5xl font-signature ml-2"><a className="link-underline hover:transition ease-in-out delay-150 hover:underline hover:decoration-solid" href="">Project Management App</a></h1>
+          <h1 className="text-5xl font-signature ml-2"><a className="link-underline hover:transition ease-in-out delay-150 hover:underline hover:decoration-solid" href="">TaskMaster</a></h1>
           {/* <h1 className="text-5xl font-signature ml-2">
             <Link
               className="link-underline link-underline-black"
@@ -39,7 +40,9 @@ const Navbar = () => {
             </Link>
           </h1> */}
         </div>
-
+        <Link className="bg-white -mt-3" href={'/'}>
+        <Image width={90} height={90} src={"./Untitled.svg"}  alt="logo"/>
+        </Link>
         <ul className="hidden md:flex">
           {links.map(({ id, name, href }) => (
             <li
