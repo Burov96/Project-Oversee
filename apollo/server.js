@@ -133,9 +133,11 @@ export const resolvers = {
 
 
 async function startServer() {
+  const PORT = process.env.PORT || 8000;
+  const MONGODB_URI = process.env.MONGODB_URI;
   const app = express();
 
-    mongoose.connect("mongodb+srv://admin:admin@cluster0.ap86ezp.mongodb.net/projects", {
+    mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
@@ -150,7 +152,7 @@ async function startServer() {
   await server.start();
   server.applyMiddleware({ app });
 
-  app.listen({ port: 4000 }, () =>
+  app.listen(PORT, () =>
     console.log(`Server ready at http://localhost:4000${server.graphqlPath}`)
   );
 }
