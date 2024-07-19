@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "node server.js",
+    "start": "node apollo/server.js",
     "lint": "next lint",
     "apollo-server": "node apollo/server.js"
   },
