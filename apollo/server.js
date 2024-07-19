@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import Project from "./mongoSchemas.js";
 import express from "express"
 import cors from 'cors';
+import next from "next";
 
 export const GET_PROJECTS = gql`
   query GetProjects {
@@ -131,13 +132,15 @@ export const resolvers = {
 
 
 async function startServer() {
+  const dev = process.env.NODE_ENV !== 'production';
+  const nextApp = next({ dev });
+  const handle = nextApp.getRequestHandler();
+  await nextApp.prepare();
+  
   const PORT = process.env.PORT || 8000;
   const MONGODB_URI = process.env.MONGODB_URI;
   const app = express();
-  app.use(cors({
-    origin: 'https://project-oversee-33d679da664e.herokuapp.com',
-    credentials: true
-  }));
+
 
     mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,
