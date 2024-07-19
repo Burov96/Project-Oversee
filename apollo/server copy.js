@@ -131,18 +131,18 @@ export const resolvers = {
 };
 
 
-const dev = process.env.NODE_ENV !== 'production';
-const nextApp = next({ dev });
-const handle = nextApp.getRequestHandler();
-
 async function startServer() {
+  const dev = process.env.NODE_ENV !== 'production';
+  const nextApp = next({ dev });
+  const handle = nextApp.getRequestHandler();
   await nextApp.prepare();
-
-  const app = express();
-  const PORT = process.env.PORT || 3000;
+  
+  const PORT = process.env.PORT || 8000;
   const MONGODB_URI = process.env.MONGODB_URI;
+  const app = express();
 
-  mongoose.connect(MONGODB_URI, {
+
+    mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   });
@@ -157,17 +157,9 @@ async function startServer() {
   await server.start();
   server.applyMiddleware({ app });
 
-  app.all('*', (req, res) => {
-    return handle(req, res);
-  });
-
-  app.listen(PORT, (err) => {
-    if (err) throw err;
-    console.log(`> Ready on http://localhost:${PORT}`);
-  });
+  app.listen(PORT, () =>
+    console.log(`Server ready at http://localhost:${PORT}${server.graphqlPath}`)
+  );
 }
 
-startServer().catch((ex) => {
-  console.error(ex.stack);
-  process.exit(1);
-});
+startServer();
