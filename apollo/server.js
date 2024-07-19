@@ -3,6 +3,7 @@ import { ApolloServer, gql } from "apollo-server-express";
 import mongoose from "mongoose";
 import Project from "./mongoSchemas.js";
 import express from "express"
+import cors from 'cors';
 
 export const GET_PROJECTS = gql`
   query GetProjects {
@@ -133,6 +134,10 @@ async function startServer() {
   const PORT = process.env.PORT || 8000;
   const MONGODB_URI = process.env.MONGODB_URI;
   const app = express();
+  app.use(cors({
+    origin: 'https://project-oversee-33d679da664e.herokuapp.com',
+    credentials: true
+  }));
 
     mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,
@@ -150,7 +155,7 @@ async function startServer() {
   server.applyMiddleware({ app });
 
   app.listen(PORT, () =>
-    console.log(`Server ready at http://localhost:4000${server.graphqlPath}`)
+    console.log(`Server ready at http://localhost:${PORT}${server.graphqlPath}`)
   );
 }
 
