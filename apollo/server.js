@@ -2,10 +2,8 @@ import { v4 } from "uuid";
 import { gql } from "@apollo/client";
 import { ApolloServer } from "apollo-server-express";
 import mongoose from "mongoose";
-import Project from "./mongoSchemas";
-
-const express = require("express");
-const cors = require("cors");
+import Project from "./mongoSchemas.js";
+import express from "express"
 
 export const GET_PROJECTS = gql`
   query GetProjects {
