@@ -1,6 +1,5 @@
 import { v4 } from "uuid";
-import { gql } from "@apollo/client";
-import { ApolloServer } from "apollo-server-express";
+import { ApolloServer, gql } from "apollo-server-express";
 import mongoose from "mongoose";
 import Project from "./mongoSchemas.js";
 import express from "express"
