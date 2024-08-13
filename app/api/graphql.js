@@ -1,4 +1,3 @@
-
 import { ApolloServer } from 'apollo-server-micro';
 import { typeDefs, resolvers } from '../../graphql';
 

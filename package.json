@@ -6,16 +6,17 @@
   "engines": {
     "node": "20.x"
   },
-  "scripts": {
-    "dev": "node apollo/server.js",
-    "build": "next build",
-    "start": "NODE_ENV=production node apollo/server.js",
-    "lint": "next lint"
-  },
+"scripts": {
+  "dev": "next dev",
+  "build": "next build",
+  "start": "next start",
+  "lint": "next lint"
+},
   "dependencies": {
     "@apollo/client": "^3.10.8",
     "@apollo/experimental-nextjs-app-support": "^0.11.2",
     "@dotlottie/react-player": "^1.6.19",
+    "@headlessui/react": "^2.1.2",
     "@reduxjs/toolkit": "^2.2.6",
     "apollo-server-express": "^3.13.0",
     "cors": "^2.8.5",
